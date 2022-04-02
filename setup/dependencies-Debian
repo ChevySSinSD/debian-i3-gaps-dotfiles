@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+# Initial Setup
+sudo apt update
+[ ! -d ~/Downloads ] && mkdir Downloads
+[ ! -d ~/Git ] && mkdir Git
+
+# Eliminate bluetooth errors at startup
+sudo systemctl enable bluetooth
+
+# Install Git
+sudo apt install git
+git config --global user.name "Eric Roeder"
+git config --global user.email eric.roeder@gmail.com
+
+# Install i3 Gaps (if not already installed)
+dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
+
 # Install xorg
 echo "Installing xorg..."
 sudo apt install xorg -y
@@ -8,16 +24,24 @@ sudo apt install xorg -y
 echo "Installing printer system"
 sudo apt install cups -y
 
-# Install SANE (Scanner Acess Now Easy), Brother Scanner Drivers, and scanner software
+# Install SANE (Scanner Access Now Easy), Brother Scanner Drivers, and scanner software
 echo "Installing scanner driver and software..."
 sudo apt install libsane \
   brscan4  \
   gscan2pdf
+
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
+# Install Rclone for Google Drive
+sudo apt install rclone
+
 # Install Google Chrome
-mkdir ~/Downloads
-wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+[ ! -f ~/Downloads/google-chrome-stable_current_amd64.deb ] && wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
+
+#Install LibreOffice and numbertext extension
+sudo apt install libreoffice libreoffice-gtk3
+[ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
+sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
 
