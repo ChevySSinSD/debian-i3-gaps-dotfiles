@@ -16,3 +16,8 @@ sudo apt install libsane \
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
+# Install Google Chrome
+mkdir ~/Downloads
+wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
+
