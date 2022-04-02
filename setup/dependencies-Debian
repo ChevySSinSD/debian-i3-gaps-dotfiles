@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
+# Install xorg
 echo "Installing xorg..."
 sudo apt install xorg -y
 
+# Install printer system
 echo "Installing printer system"
 sudo apt install cups -y
 
+# Install SANE (Scanner Acess Now Easy), Brother Scanner Drivers, and scanner software
 echo "Installing scanner driver and software..."
-sudo apt install libsane \  #SANE (Scanner Access Now Easy) for Debian (https://wiki.debian.org/Scanner)
-  brscan4  \ # Brother scanner driver
-  gscan2pdf # Scanner software
+sudo apt install libsane \
+  brscan4  \
+  gscan2pdf
+# Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
-
 
