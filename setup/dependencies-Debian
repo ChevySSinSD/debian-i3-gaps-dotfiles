@@ -18,7 +18,11 @@ git config --global user.email eric.roeder@gmail.com
 dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
 
 # Install audio support
-sudo apt install pulseaudio pavucontrol
+sudo apt install pulseaudio pavucontrol -y
+
+# Install and configure Power Manager
+sudo apt install xfce4-power-manager -y
+xfce4-power-manager-settings
 
 # Install xorg
 echo "Installing xorg..."
