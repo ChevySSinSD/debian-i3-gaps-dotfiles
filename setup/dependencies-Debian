@@ -2,6 +2,7 @@
 
 # Initial Setup
 sudo apt update
+[ ! -d ~/Documents ] && mkdir Documents
 [ ! -d ~/Downloads ] && mkdir Downloads
 [ ! -d ~/Git ] && mkdir Git
 
@@ -15,6 +16,9 @@ git config --global user.email eric.roeder@gmail.com
 
 # Install i3 Gaps (if not already installed)
 dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
+
+# Install audio support
+sudo apt install pulseaudio pavucontrol
 
 # Install xorg
 echo "Installing xorg..."
@@ -45,3 +49,6 @@ sudo apt install libreoffice libreoffice-gtk3
 [ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
 sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
 
+#Clean Up
+sudo apt upgrade -y
+sudo apt autoremove -y
