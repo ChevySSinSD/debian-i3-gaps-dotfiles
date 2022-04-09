@@ -1,0 +1,50 @@
+! basic configuration
+URxvt.scrollBar: false
+URxvt.cursorBlink: true
+URxvt.internalBorder: 18
+URxvt.urlLauncher: google-chrome-stable
+
+!! URxvt Font
+URxvt.font: xft:Roboto Mono Medium for Powerline:size=13
+
+! Set terminal color scheme
+
+! special
+*.foreground: #eeeeee
+*.cursorColor: #eeeeee
+
+! black
+*.color0: #263640
+*.color8: #4a697d
+
+! red
+*.color1: #e35430
+*.color9: #e35430
+
+! green
+*.color2: #f5d65a
+*.color10: #f5d65a
+! #57ab33
+
+! yellow
+*.color3: #f2a846
+*.color11: #f2a846
+
+! blue
+*.color4: #5692d6
+*.color12: #5692d6
+
+! magenta
+*.color5: #976eff
+*.color13: #976eff
+
+! cyan
+*.color6: #83bdde
+*.color14: #83bdde
+
+! white
+*.color7: #e0e8f3
+*.color15: #e0e8f3
+
+!Background
+*.background:rgba:2400/1a00/3800/fa00

@@ -61,6 +61,10 @@ sudo apt install neofetch -y
 sudo apt install ranger -y
 ranger --copy-config=all # Copies default config to ~/.config/ranger
 
+# Install Fonts
+sudo apt install fonts-roboto
+git clone https://github.com/powerline/fonts.git ~/Git/powerline
+sh ~/Git/powerline/install.sh
 #Clean Up
 sudo apt upgrade -y
 sudo apt autoremove -y
