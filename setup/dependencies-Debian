@@ -55,6 +55,10 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 # Install Neofetch
 sudo apt install neofetch -y
 
+# Install Command Line File Manager (Ranger)
+sudo apt install ranger -y
+ranger --copy-config=all # Copies default config to ~/.config/ranger
+
 #Clean Up
 sudo apt upgrade -y
 sudo apt autoremove -y
