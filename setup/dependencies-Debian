@@ -17,54 +17,34 @@ git config --global user.email eric.roeder@gmail.com
 # Install i3 Gaps (if not already installed)
 dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
 
-# Install audio support
-sudo apt install pulseaudio pavucontrol -y
-
-# Install Power Manager
-sudo apt install xfce4-power-manager -y
-
-# Install xorg
-echo "Installing xorg..."
-sudo apt install xorg -y
-
-# Install printer system
-echo "Installing printer system"
-sudo apt install cups -y
-
-# Install SANE (Scanner Access Now Easy), Brother Scanner Drivers, and scanner software
-echo "Installing scanner driver and software..."
-sudo apt install libsane \
-  brscan4  \
-  gscan2pdf
+# Install apt packages
+sudo apt install xorg `#			Xorg` \
+	pulseaudio pavucontrol `# 		Audio and volume control` \
+	xfce4-power-manager `# 			Power Manager` \
+	cups `#					Printer support` \
+	libsane brscan4 gscan2pdf `#		Scanner support: SANE, Brother Scanner Drivers, and scanner software` \
+	rclone `#				Google Drive support` \
+	libreoffice libreoffice-gtk3`#		Libreoffice` \
+	neofetch htop `#			Command line utilities` \
+	ranger `#				Ranger - command line file manager` \
+	fonts-roboto -y `#			Roboto fonts`
 
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
-
-# Install Rclone for Google Drive
-sudo apt install rclone
 
 # Install Google Chrome
 [ ! -f ~/Downloads/google-chrome-stable_current_amd64.deb ] && wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
 
-#Install LibreOffice and numbertext extension
-sudo apt install libreoffice libreoffice-gtk3
+#Install LibreOffice numbertext extension
 [ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
 sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
 
-# Install Neofetch
-# https://github.com/dylanaraps/neofetch/wiki
-sudo apt install neofetch -y
-
-# Install Command Line File Manager (Ranger)
-# References: https://wiki.archlinux.org/title/ranger#Configuration and https://github.com/ranger/ranger/wiki
-sudo apt install ranger -y
-ranger --copy-config=all # Copies default config to ~/.config/ranger
-
-# Install Fonts
-sudo apt install fonts-roboto
+# Install Powerline Fonts
 git clone https://github.com/powerline/fonts.git ~/Git/powerline
 sh ~/Git/powerline/install.sh
-#Clean Up
+
+# Clean Up
+sudo rm -R ~/Git/powerline
 sudo apt upgrade -y
 sudo apt autoremove -y
