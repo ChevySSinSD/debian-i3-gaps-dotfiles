@@ -20,9 +20,8 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 # Install audio support
 sudo apt install pulseaudio pavucontrol -y
 
-# Install and configure Power Manager
+# Install Power Manager
 sudo apt install xfce4-power-manager -y
-xfce4-power-manager-settings
 
 # Install xorg
 echo "Installing xorg..."
@@ -52,6 +51,9 @@ sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
 sudo apt install libreoffice libreoffice-gtk3
 [ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
 sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
+
+# Install Neofetch
+sudo apt install neofetch -y
 
 #Clean Up
 sudo apt upgrade -y
