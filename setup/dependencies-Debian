@@ -53,9 +53,11 @@ sudo apt install libreoffice libreoffice-gtk3
 sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
 
 # Install Neofetch
+# https://github.com/dylanaraps/neofetch/wiki
 sudo apt install neofetch -y
 
 # Install Command Line File Manager (Ranger)
+# References: https://wiki.archlinux.org/title/ranger#Configuration and https://github.com/ranger/ranger/wiki
 sudo apt install ranger -y
 ranger --copy-config=all # Copies default config to ~/.config/ranger
 
