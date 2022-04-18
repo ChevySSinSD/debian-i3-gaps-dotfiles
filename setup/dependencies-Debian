@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# Add multimedia repositories
-dpkg-query -l | grep -q deb-multimedia-keyring || \
-	wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
-	|| sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
-grep -q 'http://www.deb-multimedia.org' /etc/apt/sources.list || sudo bash -c "echo 'deb http://www.deb-multimedia.org bullseye main non-free' >> /etc/apt/sources.list"
-sudo apt update && sudo apt upgrade && sudo apt autoremove
-
 ## Setup Home Folders
 [ ! -d ~/Documents ] && mkdir Documents
 [ ! -d ~/Downloads ] && mkdir Downloads
 [ ! -d ~/Git ] && mkdir Git
+
+# Add multimedia repositories
+dpkg-query -l | grep -q deb-multimedia-keyring || \
+	wget -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
+	|| sudo apt install ~/Downloads/deb-multimedia-keyring_2016.8.1_all.deb
+[ ! -f /etc/apt/sources.list.d/multimedia.list || sudo wget -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
+sudo apt update && sudo apt upgrade && sudo apt autoremove
 
 # Download and install Bluetooth Firmware
 dpkg-query -l | grep -q broadcom-bt-firmware || \
