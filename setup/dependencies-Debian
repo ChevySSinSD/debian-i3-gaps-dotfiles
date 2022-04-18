@@ -4,18 +4,24 @@
 [ ! -d ~/Documents ] && mkdir Documents
 [ ! -d ~/Downloads ] && mkdir Downloads
 [ ! -d ~/Git ] && mkdir Git
+[ ! -d ~/.local/bin ] && mkdir ~/.local/bin
 
 # Add multimedia repositories
 dpkg-query -l | grep -q deb-multimedia-keyring || \
 	wget -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
 	|| sudo apt install ~/Downloads/deb-multimedia-keyring_2016.8.1_all.deb
-[ ! -f /etc/apt/sources.list.d/multimedia.list || sudo wget -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
+[ ! -f /etc/apt/sources.list.d/multimedia.list ] && \
+	sudo wget -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
 sudo apt update && sudo apt upgrade && sudo apt autoremove
 
 # Download and install Bluetooth Firmware
 dpkg-query -l | grep -q broadcom-bt-firmware || \
-	wget  -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/releases/download/v12.0.1.1105_p3/broadcom-bt-firmware-10.1.0.1115.deb \
+	wget -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/releases/latest/download/broadcom-bt-firmware-10.1.0.1115.deb \
 	|| sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
+
+# Disable Bluetooth SAP plugin (eliminate bluetooth errors on boot)
+[ ! -f /etc/systemd/system/bluetooth.service.d/override.conf ] && \
+	sudo wget -P /etc/systemd/system/bluetooth.service.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/systemd/system/bluetooth.service.d/override.conf
 
 # Install Git
 sudo apt install git
@@ -27,6 +33,7 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 
 # Install apt packages
 sudo apt install xorg `#			Xorg` \
+	dex `#					Desktop file tool` \
 	pulseaudio pavucontrol `# 		Audio and volume control` \
 	xfce4-power-manager `# 			Power Manager` \
 	cups `#					Printer support` \
@@ -36,7 +43,7 @@ sudo apt install xorg `#			Xorg` \
 	neofetch htop `#			Command line utilities` \
 	ranger `#				Ranger - command line file manager` \
 	fonts-roboto `#				Roboto fonts` \
-	mpv `#					MPV video player`
+	mpv `#					MPV video player` \
 
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
@@ -44,15 +51,19 @@ sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup netw
 # Install Google Chrome
 dpkg-query -l | grep -q google-chrome-stable || wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb || sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
 
-#Install LibreOffice numbertext extension
+# Install LibreOffice numbertext extension
 [ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
 sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
 
+# Install Spotifyd
+[ ! -f ~/.local/bin/spotifyd ] && wget -P ~/Downloads https://github.com/Spotifyd/spotifyd/releases/latest/download/spotifyd-linux-full.tar.gz \
+	&& tar -zxf ~/Downloads/spotifyd-linux-full.tar.gz --directory ~/.local/bin
+
 # Install Powerline Fonts
-git clone https://github.com/powerline/fonts.git ~/Git/powerline
-sh ~/Git/powerline/install.sh
+#git clone https://github.com/powerline/fonts.git ~/Git/powerline
+#sh ~/Git/powerline/install.sh
 
 # Clean Up
-sudo rm -R ~/Git/powerline
-sudo apt upgrade -y
-sudo apt autoremove -y
+rm -R ~/Git/powerline
+rm ~/Downloads/*.deb
+rm ~/Downloads/*.tar.gz
