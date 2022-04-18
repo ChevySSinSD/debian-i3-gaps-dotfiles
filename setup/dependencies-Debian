@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 
-# Update apt and upgrade
-sudo apt update
-
 # Add multimedia repositories
 dpkg-query -l | grep -q deb-multimedia-keyring || \
 	wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
 	|| sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
-grep -q 'http://www.deb-multimedia.org' /etc/apt/sources.list || sudo bash -c "echo 'deb http://www.deb-multimedia.org buster main non-free' >> /etc/apt/sources.list"
+grep -q 'http://www.deb-multimedia.org' /etc/apt/sources.list || sudo bash -c "echo 'deb http://www.deb-multimedia.org bullseye main non-free' >> /etc/apt/sources.list"
 sudo apt update && sudo apt upgrade && sudo apt autoremove
 
 ## Setup Home Folders
@@ -15,8 +12,10 @@ sudo apt update && sudo apt upgrade && sudo apt autoremove
 [ ! -d ~/Downloads ] && mkdir Downloads
 [ ! -d ~/Git ] && mkdir Git
 
-# Eliminate bluetooth errors at startup
-sudo systemctl enable bluetooth
+# Download and install Bluetooth Firmware
+dpkg-query -l | grep -q broadcom-bt-firmware || \
+	wget  -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/releases/download/v12.0.1.1105_p3/broadcom-bt-firmware-10.1.0.1115.deb \
+	|| sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 
 # Install Git
 sudo apt install git
@@ -43,8 +42,7 @@ sudo apt install xorg `#			Xorg` \
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
 # Install Google Chrome
-[ ! -f ~/Downloads/google-chrome-stable_current_amd64.deb ] && wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
+dpkg-query -l | grep -q google-chrome-stable || wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb || sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
 
 #Install LibreOffice numbertext extension
 [ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
