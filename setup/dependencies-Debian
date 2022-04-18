@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
-# Initial Setup
+# Update apt and upgrade
 sudo apt update
+
+# Add multimedia repositories
+dpkg-query -l | grep -q deb-multimedia-keyring || \
+	wget https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
+	|| sudo dpkg -i deb-multimedia-keyring_2016.8.1_all.deb
+grep -q 'http://www.deb-multimedia.org' /etc/apt/sources.list || sudo bash -c "echo 'deb http://www.deb-multimedia.org buster main non-free' >> /etc/apt/sources.list"
+sudo apt update && sudo apt upgrade && sudo apt autoremove
+
+## Setup Home Folders
 [ ! -d ~/Documents ] && mkdir Documents
 [ ! -d ~/Downloads ] && mkdir Downloads
 [ ! -d ~/Git ] && mkdir Git
@@ -24,10 +33,11 @@ sudo apt install xorg `#			Xorg` \
 	cups `#					Printer support` \
 	libsane brscan4 gscan2pdf `#		Scanner support: SANE, Brother Scanner Drivers, and scanner software` \
 	rclone `#				Google Drive support` \
-	libreoffice libreoffice-gtk3`#		Libreoffice` \
+	libreoffice libreoffice-gtk3 `#		Libreoffice` \
 	neofetch htop `#			Command line utilities` \
 	ranger `#				Ranger - command line file manager` \
-	fonts-roboto -y `#			Roboto fonts`
+	fonts-roboto `#				Roboto fonts` \
+	mpv `#					MPV video player`
 
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
