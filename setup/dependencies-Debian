@@ -72,11 +72,16 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 
 # Install Spotifyd
 [ ! -f ~/.local/bin/spotifyd ] && wget -P ~/Downloads https://github.com/Spotifyd/spotifyd/releases/latest/download/spotifyd-linux-full.tar.gz \
-	&& tar -zxf ~/Downloads/spotifyd-linux-full.tar.gz --directory ~/.local/bin
+	&& tar -xf ~/Downloads/spotifyd-linux-full.tar.gz --directory ~/.local/bin
 
 # Install Spotify TUI
 [ ! -f ~/.local/bin/spt ] && wget -P ~/Downloads https://github.com/Rigellute/spotify-tui/releases/latest/download/spotify-tui-linux.tar.gz \
-	&& tar -zxf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
+	&& tar -xf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
+
+# Install Hack Nerd Font (for Polybar)
+wget -P ~/Downloads https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.tar.gz \
+	&& tar -xf Hack-v3.003-ttf.tar.gz --strip-components=1 --directory ~/.local/share/fonts
+wget -P ~/.config/fontconfig/conf.d https://raw.githubusercontent.com/source-foundry/Hack/master/config/fontconfig/45-Hack.conf
 
 # Install Powerline Fonts
 git clone https://github.com/powerline/fonts.git ~/Git/powerline
