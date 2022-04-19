@@ -2,7 +2,7 @@
 Name=Spotify TUI
 Exec=spt
 Comment=Spotify for the terminal written in Rust
-Icon=${SNAP}/meta/gui/spt.png
+Icon=spotify
 Type=Application
 Terminal=true
 StartupNotify=false
