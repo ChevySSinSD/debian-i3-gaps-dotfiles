@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-## Setup Home Folders
+## Setup Folders
 [ ! -d ~/Documents ] && mkdir Documents
 [ ! -d ~/Downloads ] && mkdir Downloads
 [ ! -d ~/Git ] && mkdir Git
 [ ! -d ~/.local/bin ] && mkdir ~/.local/bin
+[ ! -d ~/scripts ] && mkdir  ~/scripts
+[ ! -d ~/scripts/rofi ] && mkdir  ~/scripts/rofi
+[ ! -d ~/scripts/bash ] && mkdir  ~/scripts/bash
 
 # Add multimedia repositories
 dpkg-query -l | grep -q deb-multimedia-keyring || \
@@ -32,7 +35,7 @@ git config --global user.email eric.roeder@gmail.com
 dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
 
 # Install apt packages
-sudo apt install xorg `#			Xorg` \
+sudo apt install xorg xss-lock`#		Xorg` \
 	dex `#					Desktop file tool` \
 	feh `#					Desktop background tool` \
 	gimp `#					Raster image tool` \
@@ -51,7 +54,8 @@ sudo apt install xorg `#			Xorg` \
 	lxappearance `#				GTK theme management` \
 	mpv `#					MPV video player` \
 	python3-pip `#				Python package manager` \
-	rofi `#					Run menu `
+	rofi `#					Run menu ` \
+	polybar `#				Bar program `
 
 # Remove older, buggy xorg intel drivers, use newer modesetting drivers instead
 sudo apt remove xserver-xorg-video-intel
@@ -75,16 +79,21 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 	&& tar -zxf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
 
 # Install Powerline Fonts
-#git clone https://github.com/powerline/fonts.git ~/Git/powerline
-#sh ~/Git/powerline/install.sh
+git clone https://github.com/powerline/fonts.git ~/Git/powerline
+sh ~/Git/powerline/install.sh
+
+# Install Play with MPV
+pip install git+https://github.com/thann/play-with-mpv --user
 
 # Install yt-dlp and remove youtube-dl
 sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
 sudo chmod a+rx /usr/local/bin/yt-dlp
 pip uninstall youtube-dl
 
-# Install Play with MPV
-pip install git+https://github.com/thann/play-with-mpv --user
+# Install powerline scripts
+wget -P ~/scripts/bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+git clone https://github.com/magicmonty/bash-git-prompt.git ~/scripts/bash/bash-git-prompt --depth=1
+wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/lucascosti/bashrc/fb3ce2b0c2193d27c20a6c4cb64bb443506c5849/bashscripts/bash-git-prompt/themes/Lucas_bullettrain_tags.bgptheme
 
 # Clean Up
 rm -R ~/Git/powerline
