@@ -38,16 +38,16 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start program launcher (rofi)
-bindsym $mod+d exec "rofi -modi drun,run,ssh -show drun"
+bindsym $mod+d exec "rofi -modi drun,run,ssh -show drun -theme clean"
 
 # start ssh launcher (rofi)
-bindsym $mod+s exec "rofi -modi drun,run,ssh -show ssh"
+bindsym $mod+s exec "rofi -modi drun,run,ssh -show ssh -theme clean"
 
 # start power menu (rofi)
-bindsym $mod+shift+e exec "rofi -modi 'Powermenu:~/scripts/rofi/powermenu.sh' -show Powermenu -theme powermenu -location 3 -xoffset -30 -yoffset 86"
+bindsym $mod+shift+e exec "rofi -modi Powermenu:~/scripts/rofi/powermenu.sh -show Powermenu -theme powermenu -location 3 -xoffset -30 -yoffset 86"
 
 # window switcher menu (rofi)
-bindsym $mod+tab exec ~/scripts/rofi/tabmenu.sh
+bindsym $mod+Tab exec ~/scripts/rofi/tabmenu.sh
 
 # change focus
 bindsym $mod+j focus left

@@ -46,6 +46,7 @@ sudo apt install xorg `#			Xorg` \
 	neofetch htop `#			Command line utilities` \
 	ranger `#				Ranger - command line file manager` \
 	fonts-roboto `#				Roboto fonts` \
+	papirus-icon-theme `#			Papirus icons` \
 	mpv `#					MPV video player` \
 	python3-pip `#				Python package manager` \
 	rofi `#					Run menu `
