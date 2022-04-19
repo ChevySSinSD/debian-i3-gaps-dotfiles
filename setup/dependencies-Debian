@@ -78,6 +78,13 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 #git clone https://github.com/powerline/fonts.git ~/Git/powerline
 #sh ~/Git/powerline/install.sh
 
+# Install yt-dlp
+sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
+sudo chmod a+rx /usr/local/bin/yt-dlp
+
+# Install Play with MPV
+pip install git+https://github.com/thann/play-with-mpv --user
+
 # Clean Up
 rm -R ~/Git/powerline
 rm ~/Downloads/*.deb

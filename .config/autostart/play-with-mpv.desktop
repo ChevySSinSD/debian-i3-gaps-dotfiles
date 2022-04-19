@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Categories=AudioVideo;Audio;Video;Player;TV
+Comment=Python server to play youtube in MPV
+Exec=/home/eric/.local/bin/play-with-mpv
+Icon=mpv
+Name=Play With mpv
+GenericName=Script to start server
+Type=Application
+OnlyShowIn=i3
