@@ -34,6 +34,9 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 # Install apt packages
 sudo apt install xorg `#			Xorg` \
 	dex `#					Desktop file tool` \
+	feh `#					Desktop background tool` \
+	gimp `#					Raster image tool` \
+	inkscape `#				Vector image tool` \
 	pulseaudio pavucontrol `# 		Audio and volume control` \
 	xfce4-power-manager `# 			Power Manager` \
 	cups `#					Printer support` \
@@ -44,6 +47,8 @@ sudo apt install xorg `#			Xorg` \
 	ranger `#				Ranger - command line file manager` \
 	fonts-roboto `#				Roboto fonts` \
 	mpv `#					MPV video player` \
+	python3-pip `#				Python package manager` \
+	rofi `#					Run menu `
 
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
