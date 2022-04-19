@@ -47,6 +47,8 @@ sudo apt install xorg `#			Xorg` \
 	ranger `#				Ranger - command line file manager` \
 	fonts-roboto `#				Roboto fonts` \
 	papirus-icon-theme `#			Papirus icons` \
+	adapta-gtk-theme `#			Adapata themes` \
+	lxappearance `#				GTK theme management` \
 	mpv `#					MPV video player` \
 	python3-pip `#				Python package manager` \
 	rofi `#					Run menu `
