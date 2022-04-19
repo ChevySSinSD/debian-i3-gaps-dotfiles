@@ -1,0 +1,4 @@
+# Allow user eric to shutdown without password
+eric ALL=NOPASSWD:/usr/sbin/pm-suspend
+eric ALL=NOPASSWD:/sbin/reboot
+eric ALL=NOPASSWD:/sbin/shutdown

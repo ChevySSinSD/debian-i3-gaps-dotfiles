@@ -1,5 +1,4 @@
-# # ChevySSinSD i3 config for t430-debian-i3-gaps
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# ChevySSinSD i3 config for t430-debian-i3-gaps
 
 # Mod key set to windows button
 set $mod Mod4
@@ -18,10 +17,6 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-#exec --no-startup-id nm-applet
 
 # Use URxvt settings from Xresources
 exec_always --no-startup-id xrdb ~/.Xresources
@@ -42,13 +37,17 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+# start program launcher (rofi)
+bindsym $mod+d exec "rofi -modi drun,run,ssh -show drun"
+
+# start ssh launcher (rofi)
+bindsym $mod+s exec "rofi -modi drun,run,ssh -show ssh"
+
+# start power menu (rofi)
+bindsym $mod+shift+e exec "rofi -modi 'Powermenu:~/scripts/rofi/powermenu.sh' -show Powermenu -theme powermenu -location 3 -xoffset -30 -yoffset 86"
+
+# window switcher menu (rofi)
+bindsym $mod+tab exec ~/scripts/rofi/tabmenu.sh
 
 # change focus
 bindsym $mod+j focus left
@@ -84,7 +83,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+bindsym $mod+shift+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -142,7 +141,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
