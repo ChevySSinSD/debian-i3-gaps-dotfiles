@@ -53,6 +53,9 @@ sudo apt install xorg `#			Xorg` \
 	python3-pip `#				Python package manager` \
 	rofi `#					Run menu `
 
+# Remove older, buggy xorg intel drivers, use newer modesetting drivers instead
+sudo apt remove xserver-xorg-video-intel
+
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
