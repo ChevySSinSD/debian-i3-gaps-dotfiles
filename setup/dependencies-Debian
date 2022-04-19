@@ -78,14 +78,14 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 [ ! -f ~/.local/bin/spt ] && wget -P ~/Downloads https://github.com/Rigellute/spotify-tui/releases/latest/download/spotify-tui-linux.tar.gz \
 	&& tar -xf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
 
-# Install Hack Nerd Font (for Polybar)
-wget -P ~/Downloads https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.tar.gz \
-	&& tar -xf Hack-v3.003-ttf.tar.gz --strip-components=1 --directory ~/.local/share/fonts
-wget -P ~/.config/fontconfig/conf.d https://raw.githubusercontent.com/source-foundry/Hack/master/config/fontconfig/45-Hack.conf
-
-# Install Powerline Fonts
+# Install Powerline Font Patches
 git clone https://github.com/powerline/fonts.git ~/Git/powerline
 sh ~/Git/powerline/install.sh
+
+# Install Hack Font with Nerd Patch (for Polybar)
+wget -P ~/Downloads https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
+unzip -qj ~/Downloads/Hack.zip -d ~/.local/share/fonts/
+sudo fc-cache ~/.local/share/fonts -f
 
 # Install Play with MPV
 pip install git+https://github.com/thann/play-with-mpv --user
@@ -102,5 +102,4 @@ wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/
 
 # Clean Up
 rm -R ~/Git/powerline
-rm ~/Downloads/*.deb
-rm ~/Downloads/*.tar.gz
+rm ~/Downloads/*
