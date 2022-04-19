@@ -67,6 +67,10 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 [ ! -f ~/.local/bin/spotifyd ] && wget -P ~/Downloads https://github.com/Spotifyd/spotifyd/releases/latest/download/spotifyd-linux-full.tar.gz \
 	&& tar -zxf ~/Downloads/spotifyd-linux-full.tar.gz --directory ~/.local/bin
 
+# Install Spotify TUI
+[ ! -f ~/.local/bin/spt ] && wget -P ~/Downloads https://github.com/Rigellute/spotify-tui/releases/latest/download/spotify-tui-linux.tar.gz \
+	&& tar -zxf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
+
 # Install Powerline Fonts
 #git clone https://github.com/powerline/fonts.git ~/Git/powerline
 #sh ~/Git/powerline/install.sh
