@@ -78,9 +78,10 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 #git clone https://github.com/powerline/fonts.git ~/Git/powerline
 #sh ~/Git/powerline/install.sh
 
-# Install yt-dlp
+# Install yt-dlp and remove youtube-dl
 sudo wget https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -O /usr/local/bin/yt-dlp
 sudo chmod a+rx /usr/local/bin/yt-dlp
+pip uninstall youtube-dl
 
 # Install Play with MPV
 pip install git+https://github.com/thann/play-with-mpv --user
