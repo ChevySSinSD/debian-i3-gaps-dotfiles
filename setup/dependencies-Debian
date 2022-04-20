@@ -36,6 +36,7 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 
 # Install apt packages
 sudo apt install xorg xss-lock numlockx`#	Xorg tools` \
+	autorandr `#				Monitor switching tool` \
 	dex `#					Desktop file tool` \
 	feh `#					Desktop background tool` \
 	gimp `#					Raster image tool` \
@@ -59,6 +60,9 @@ sudo apt install xorg xss-lock numlockx`#	Xorg tools` \
 
 # Remove older, buggy xorg intel drivers, use newer modesetting drivers instead
 sudo apt remove xserver-xorg-video-intel
+
+# Remove i3bar
+sudo apt remove i3bar
 
 # Set up network scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner

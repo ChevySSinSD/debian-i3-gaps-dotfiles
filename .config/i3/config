@@ -7,6 +7,9 @@ set $mod Mod4
 # is used in the bar {} block below
 font pango:Roboto 13
 
+# Keyboard shortcut to change monitor configuration
+bindsym $mod+m exec autorandr -c; exec i3-msg restart
+
 # Set the desktop background using feh
 exec_always --no-startup-id feh --bg-fill --randomize ~/Pictures/wallpapers/*
 
