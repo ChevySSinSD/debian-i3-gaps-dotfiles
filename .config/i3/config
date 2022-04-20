@@ -177,6 +177,7 @@ bindsym $mod+r mode "resize"
 # Autostart applications
 exec i3-msg 'workspace 2;exec /usr/bin/urxvt;workspace 5;exec /usr/bin/thunar;workspace 4;exec /usr/bin/urxvt -e /home/eric/.local/bin/spt'
 exec i3-msg 'workspace 3;exec /usr/bin/google-chrome-stable'
+exec i3-msg 'workspace 1'
 
 ### i3-gaps stuff ###
 
