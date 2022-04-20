@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-: '
-## Setup Folders
+
+# Setup Folders
 [ ! -d ~/Documents ] && mkdir Documents
 [ ! -d ~/Downloads ] && mkdir Downloads
 [ ! -d ~/Git ] && mkdir Git
@@ -33,46 +33,54 @@ git config --global user.email eric.roeder@gmail.com
 
 # Install i3 Gaps (if not already installed)
 dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
-'
 
-# Install apt packages
-sudo apt install xorg xss-lock numlockx`#	Xorg tools` \
-	network-manager gir1.2-nm-1.0`#		NetworkManager and requirements for Networkmanager-dmenu` \
-	autorandr `#				Monitor switching tool` \
-	dex `#					Desktop file tool` \
-	feh `#					Desktop background tool` \
-	gimp `#					Raster image tool` \
-	inkscape `#				Vector image tool` \
-	pulseaudio pavucontrol `# 		Audio and volume control` \
-	xfce4-power-manager `# 			Power Manager` \
-	cups `#					Printer support` \
-	libsane brscan4 gscan2pdf `#		Scanner support: SANE, Brother Scanner Drivers, and scanner software` \
-	rclone `#				Google Drive support` \
-	libreoffice libreoffice-gtk3 `#		Libreoffice` \
-	neofetch htop `#			Command line utilities` \
-	ranger `#				Ranger - command line file manager` \
-	fonts-roboto `#				Roboto fonts` \
-	papirus-icon-theme `#			Papirus icons` \
-	adapta-gtk-theme `#			Adapata themes` \
-	lxappearance `#				GTK theme management` \
-	mpv `#					MPV video player` \
-	python3-pip `#				Python package manager` \
-	rofi `#					Run menu ` \
-	polybar `#				Bar program `
+# Apt packages - Install
+#	xorg					X display server
+#	xss-lock numlockx			X tools for locking screen and activating numlock
+#	network-manager				NetworkManager for WiFi and ethernet
+#	gir1.2-nm-1.0				Required for NetworkManager_dmenu
+#	autorandr				Tool for automatic monitor switching
+#	dex					.Desktop file tool
+#	feh					Image viewer used for desktop background
+#	gimp					Raster image software
+#	inkscape				Vector image software
+#	pulseaudio pavucontrol	 		Audio and volume control
+#	xfce4-power-manager 			Power Manager
+#	cups					Printer support
+#	libsane brscan4 gscan2pdf		Scanner support: SANE, Brother Scanner Drivers, and scanner software
+#	rclone					Google Drive support
+#	libreoffice libreoffice-gtk3		Libreoffice with GTK3 theme support
+#	neofetch				System info tool
+#	htop					System process monitor tool
+#	ranger					Command line file manager
+# 	lxappearance				GTK theme manager
+#	mpv					Media player
+#	python3-pip				Python package manager
+#	rofi					Program Launcher (dmenu replacement)
+#	polybar					Bar (i3bar replacement)
+#	calc					Requried for random color support
+
+sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr dex \
+	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane brscan4 gscan2pdf \
+	rclone libreoffice libreoffice-gtk3 neofetch htop ranger lxappearance mpv python3-pip rofi polybar calc
+
+# Apt packages - Remove
+#	Xorg intel drivers 	- using default modesetting drivers instead
+#	i3bar			- using polybar instead
+sudo apt remove xserver-xorg-video-intel i3bar
+
+# Install pywal (Automatically set colors based on wallpaper)
+sudo pip3 install pywal
 
 # Install Networkmanager-dmenu
 [ ! -f ~/.local/bin/networkmanager_dmenu ] && wget -P ~/Downloads https://github.com/firecat53/networkmanager-dmenu/archive/refs/tags/v2.1.0.tar.gz \
 	&& tar -xvf ~/Downloads/v2.1.0.tar.gz --strip-components=1 --directory ~/Downloads/ \
 	&& cp ~/Downloads/networkmanager_dmenu ~/.local/bin/ \
 	&& cp ~/Downloads/networkmanager_dmenu.desktop ~/.local/share/applications/
-: '
-# Remove older, buggy xorg intel drivers, use newer modesetting drivers instead
-sudo apt remove xserver-xorg-video-intel
 
-# Install acpilight (xbacklight does not work when using modesetting driver)
+# Install acpilight (xbacklight replacement that works with modesetting driver)
 git clone https://gitlab.com/wavexx/acpilight.git ~/Git/acpilight
 sudo make -C ~/Git/acpilight/ install
-sudo rm -R ~/Git/aciplight
 
 # Remove i3bar
 sudo apt remove i3bar
@@ -117,10 +125,11 @@ wget -P ~/scripts/bash https://raw.githubusercontent.com/git/git/master/contrib/
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/scripts/bash/bash-git-prompt --depth=1
 wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/lucascosti/bashrc/fb3ce2b0c2193d27c20a6c4cb64bb443506c5849/bashscripts/bash-git-prompt/themes/Lucas_bullettrain_tags.bgptheme
 
+# Install my dotfiles
+
 # Clean Up
-rm -R ~/Git/powerline
+rm -R ~/Git/*
 rm ~/Downloads/*
 
 # Reboot the system
 sudo reboot
-'
