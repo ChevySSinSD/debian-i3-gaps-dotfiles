@@ -35,7 +35,7 @@ git config --global user.email eric.roeder@gmail.com
 dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
 
 # Install apt packages
-sudo apt install xorg xss-lock`#		Xorg` \
+sudo apt install xorg xss-lock numlockx`#	Xorg tools` \
 	dex `#					Desktop file tool` \
 	feh `#					Desktop background tool` \
 	gimp `#					Raster image tool` \
@@ -103,3 +103,6 @@ wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/
 # Clean Up
 rm -R ~/Git/powerline
 rm ~/Downloads/*
+
+# Reboot the system
+sudo reboot
