@@ -61,6 +61,11 @@ sudo apt install xorg xss-lock numlockx`#	Xorg tools` \
 # Remove older, buggy xorg intel drivers, use newer modesetting drivers instead
 sudo apt remove xserver-xorg-video-intel
 
+# Install acpilight (xbacklight does not work when using modesetting driver)
+git clone https://gitlab.com/wavexx/acpilight.git ~/Git/acpilight
+sudo make -C ~/Git/acpilight/ install
+sudo rm -R ~/Git/aciplight
+
 # Remove i3bar
 sudo apt remove i3bar
 

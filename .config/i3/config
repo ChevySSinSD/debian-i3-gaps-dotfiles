@@ -34,6 +34,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Use acpilight (xbacklight replacement for modesetting driver) to control screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -180,7 +184,6 @@ bindsym $mod+r mode "resize"
 # Autostart applications
 exec i3-msg 'workspace 2;exec /usr/bin/urxvt;workspace 5;exec /usr/bin/thunar;workspace 4;exec /usr/bin/urxvt -e /home/eric/.local/bin/spt'
 exec i3-msg 'workspace 3;exec /usr/bin/google-chrome-stable'
-exec i3-msg 'workspace 1'
 
 ### i3-gaps stuff ###
 
