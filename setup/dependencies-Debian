@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+: '
 ## Setup Folders
 [ ! -d ~/Documents ] && mkdir Documents
 [ ! -d ~/Downloads ] && mkdir Downloads
@@ -33,9 +33,11 @@ git config --global user.email eric.roeder@gmail.com
 
 # Install i3 Gaps (if not already installed)
 dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
+'
 
 # Install apt packages
 sudo apt install xorg xss-lock numlockx`#	Xorg tools` \
+	network-manager gir1.2-nm-1.0`#		NetworkManager and requirements for Networkmanager-dmenu` \
 	autorandr `#				Monitor switching tool` \
 	dex `#					Desktop file tool` \
 	feh `#					Desktop background tool` \
@@ -58,6 +60,12 @@ sudo apt install xorg xss-lock numlockx`#	Xorg tools` \
 	rofi `#					Run menu ` \
 	polybar `#				Bar program `
 
+# Install Networkmanager-dmenu
+[ ! -f ~/.local/bin/networkmanager_dmenu ] && wget -P ~/Downloads https://github.com/firecat53/networkmanager-dmenu/archive/refs/tags/v2.1.0.tar.gz \
+	&& tar -xvf ~/Downloads/v2.1.0.tar.gz --strip-components=1 --directory ~/Downloads/ \
+	&& cp ~/Downloads/networkmanager_dmenu ~/.local/bin/ \
+	&& cp ~/Downloads/networkmanager_dmenu.desktop ~/.local/share/applications/
+: '
 # Remove older, buggy xorg intel drivers, use newer modesetting drivers instead
 sudo apt remove xserver-xorg-video-intel
 
@@ -115,3 +123,4 @@ rm ~/Downloads/*
 
 # Reboot the system
 sudo reboot
+'
