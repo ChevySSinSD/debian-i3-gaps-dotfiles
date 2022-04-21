@@ -72,6 +72,14 @@ sudo apt remove xserver-xorg-video-intel i3bar
 # Install pywal (Automatically set colors based on wallpaper)
 sudo pip3 install pywal
 
+# Install picom
+git clone https://github.com/ibhagwan/picom.git ~/Git/picom
+sudo apt install libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libpcre3-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev meson libx11-xcb-dev libxcb-sync-dev cmake libxcb-composite0-dev libxcb-present-dev xcb libxcb-glx0-dev uthash-dev libconfig-dev libgl-dev libdbus-1-dev
+cd ~/Git/picom
+git submodule update --init --recursive
+meson --buildtype=release . build
+sudo ninja -C build install
+
 # Install Networkmanager-dmenu
 [ ! -f ~/.local/bin/networkmanager_dmenu ] && wget -P ~/Downloads https://github.com/firecat53/networkmanager-dmenu/archive/refs/tags/v2.1.0.tar.gz \
 	&& tar -xvf ~/Downloads/v2.1.0.tar.gz --strip-components=1 --directory ~/Downloads/ \
