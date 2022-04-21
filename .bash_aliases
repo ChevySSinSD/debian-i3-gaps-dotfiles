@@ -1,8 +1,9 @@
-# Alias for bare repository set up for dotfiles
+
+## Git Aliases
+# Bare repository for dotfiles
 alias config='/usr/bin/git --git-dir=/home/eric/.cfg/ --work-tree=/home/eric'
 
 # Git
-## Git aliases
 alias g='git'
 alias gfu='git fetch upstream'
 alias gfo='git fetch origin'
@@ -28,3 +29,9 @@ alias gm='git merge'
 alias gcp='git cherry-pick'
 alias gpoh='git push origin HEAD'
 alias gcd='cd ~/Git/'
+
+# ls
+alias la='ls -a'
+
+# apt
+alias aptuua='sudo apt update && sudo apt upgrade && sudo apt autoremove'
