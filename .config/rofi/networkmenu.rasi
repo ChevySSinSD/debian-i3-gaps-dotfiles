@@ -1,0 +1,68 @@
+/*    ________                   __________ _      _____ ____ 
+ *   / ____/ /_  ___ _   ____  _/ ___/ ___/(_)___ / ___// __ \
+ *  / /   / __ \/ _ \ | / / / / |__ \\__ \/ / __ \\__ \/ / / /
+ * / /___/ / / /  __/ |/ / /_/ /__/ /__/ / / / / /__/ / /_/ / 
+ * \____/_/ /_/\___/|___/\__, /____/____/_/_/ /_/____/_____/  
+ *                      /____/
+ * Purpose      Network Menu Rofi Theme
+ * Author       Eric Roeder
+ * Mail         eric.roeder@gmail.com
+ * Github       @ChevySSinSD
+ * Inspired By	https://github.com/adi1090x/polybar-themes/blob/master/simple/colorblocks/scripts/rofi/networkmenu.rasi
+ * Inspired By	https://github.com/k-vernooy/dotfiles/blob/master/config/rofi/powermenu.rasi
+ */
+
+configuration {
+    show-icons: false;
+    font: "Hack Nerd Font 13";
+}
+
+@import "colors.rasi"
+
+#window {
+    width: 425px;
+    height: 475px;
+    background-color: @background-solid;
+    padding: 5px;
+}
+
+#mainbox {
+    border:  0;
+    padding: 0;
+    children: [listview];
+    background-color: @background-solid;
+}
+
+#listview {
+    columns: 1;
+    layout: vertical;
+    background-color: transparent;
+}
+
+element {
+    margin: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    orientation: vertical;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}
+
+#element.normal.normal {
+    background-color: rgba(0,0,0,0);
+    text-color:       @foreground;
+}
+
+#element.selected.normal {
+    background-color: @selected-background;
+    text-color:       @selected-foreground;
+    border-color: #d07ef2;
+}
+
+#element.alternate.normal {
+    background-color: rgba(0,0,0,0);
+    text-color:       @foreground;
+}

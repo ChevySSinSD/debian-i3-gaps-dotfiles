@@ -127,12 +127,12 @@ interval = 3.0
 
 format-connected = <label-connected>
 format-connected-underline = #9f78e1
-label-connected = "直"
+label-connected = "%{A1:networkmanager_dmenu &:}直%{A}"
 label-connected-foreground = ${colors.primary}
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = 睊
+label-disconnected = "%{A1:networkmanager_dmenu &:}睊%{A}"
 label-disconnected-foreground = ${colors.alert}
 
 ; a = worst
@@ -141,7 +141,6 @@ ramp-signal-1 = b
 ramp-signal-2 = c
 ramp-signal-3 = d
 ramp-signal-4 = e
-
 
 [module/date]
 type = internal/date
