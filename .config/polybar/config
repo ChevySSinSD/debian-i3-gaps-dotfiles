@@ -1,3 +1,17 @@
+#    ________                   __________ _      _____ ____ 
+#   / ____/ /_  ___ _   ____  _/ ___/ ___/(_)___ / ___// __ \
+#  / /   / __ \/ _ \ | / / / / |__ \\__ \/ / __ \\__ \/ / / /
+# / /___/ / / /  __/ |/ / /_/ /__/ /__/ / / / / /__/ / /_/ / 
+# \____/_/ /_/\___/|___/\__, /____/____/_/_/ /_/____/_____/  
+#                      /____/
+# 
+# Purpose       Polybar configuration
+# Author        Eric Roeder
+# Mail          eric.roeder@gmail.com
+# Github        @ChevySSinSD
+# Inspired By   https://github.com/k-vernooy/dotfiles/blob/master/config/polybar/config
+# 
+
 [colors]
 background = #fa1e2137 
 foreground = #e3eaf3
@@ -53,11 +67,11 @@ tray-position = none
 ; Supports any percentage with offset
 ; Percentages are relative to the monitor width or height for detached trays
 ; and relative to the bar window (without borders) for non-detached tray.
-tray-offset-x = 0
-tray-offset-y = 0
+; tray-offset-x = 0
+; tray-offset-y = 0
 
 ; Pad the sides of each tray icon
-tray-padding = 0
+; tray-padding = 0
 
 [module/xwindow]
 type = internal/xwindow
@@ -154,7 +168,6 @@ time-alt = "%H:%M:%S"
 format-prefix-foreground = ${colors.foreground}
 format-underline = #0a6cf5
 label = %date%%time%
-
 
 [module/audio]
 type = internal/pulseaudio
