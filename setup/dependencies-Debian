@@ -53,6 +53,7 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 #	neofetch				System info tool
 #	htop					System process monitor tool
 #	ranger					Command line file manager
+#	thunar					GUI file manager
 # 	lxappearance				GTK theme manager
 #	mpv					Media player
 #	python3-pip				Python package manager
@@ -98,6 +99,9 @@ dpkg-query -l | grep -q google-chrome-stable || wget -P ~/Downloads https://dl.g
 [ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
 sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
 
+# Install LibreOffice icon theme
+wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh
+
 # Install Spotifyd
 [ ! -f ~/.local/bin/spotifyd ] && wget -P ~/Downloads https://github.com/Spotifyd/spotifyd/releases/latest/download/spotifyd-linux-full.tar.gz \
 	&& tar -xf ~/Downloads/spotifyd-linux-full.tar.gz --directory ~/.local/bin
@@ -106,7 +110,7 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 [ ! -f ~/.local/bin/spt ] && wget -P ~/Downloads https://github.com/Rigellute/spotify-tui/releases/latest/download/spotify-tui-linux.tar.gz \
 	&& tar -xf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
 
-# Install RobotoMono Hack Font (for Polybar and Powerline)
+# Install RobotoMono Hack Font (for Polybar, Rofi, and XResources)
 wget -P ~/Downloads https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
 unzip -qj ~/Downloads/RobotoMono.zip -d ~/.local/share/fonts/
 fc-cache -f -v
