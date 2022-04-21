@@ -90,10 +90,7 @@ sudo ninja -C build install
 git clone https://gitlab.com/wavexx/acpilight.git ~/Git/acpilight
 sudo make -C ~/Git/acpilight/ install
 
-# Remove i3bar
-sudo apt remove i3bar
-
-# Set up network scanner
+# Set up scanner
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
 # Install Google Chrome
@@ -133,6 +130,9 @@ wget -P ~/scripts/bash https://raw.githubusercontent.com/git/git/master/contrib/
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/scripts/bash/bash-git-prompt --depth=1
 wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/lucascosti/bashrc/fb3ce2b0c2193d27c20a6c4cb64bb443506c5849/bashscripts/bash-git-prompt/themes/Lucas_bullettrain_tags.bgptheme
 
+# Install GTK theme
+wget -P ~/Downloads https://github.com/EliverLara/Sweet/releases/latest/download/Sweet-Dark.zip
+sudo unzip ~/Downloads/Sweet-Dark.zip -d /usr/share/themes/
 # Install my dotfiles
 
 # Clean Up

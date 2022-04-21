@@ -11,8 +11,8 @@ configuration {
 }
 
 #window {
-    width: 350px;
-    height: 120px;
+    width: 425px;
+    height: 125px;
     background-color: @background-solid;
     padding: 5px;
 }
