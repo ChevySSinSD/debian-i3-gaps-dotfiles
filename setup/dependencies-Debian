@@ -60,10 +60,11 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 #	rofi					Program Launcher (dmenu replacement)
 #	polybar					Bar (i3bar replacement)
 #	calc					Requried for random color support
+#	playerctl				command-line utility and library for controlling media players that implement the MPRIS D-Bus Interface Specification
 
 sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr dex \
 	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane brscan4 gscan2pdf \
-	rclone libreoffice libreoffice-gtk3 neofetch htop ranger lxappearance mpv python3-pip rofi polybar calc
+	rclone libreoffice libreoffice-gtk3 neofetch htop ranger lxappearance mpv python3-pip rofi polybar calc playerctl
 
 # Apt packages - Remove
 #	Xorg intel drivers 	- using default modesetting drivers instead
