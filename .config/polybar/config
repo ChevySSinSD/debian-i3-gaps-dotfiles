@@ -130,9 +130,14 @@ label-urgent-padding = ${self.label-focused-padding}
 type = internal/backlight
 card = intel_backlight
 
-format = <label>
-label = " %percentage%%"
+format = <ramp> <label>
+label = "%percentage%%"
 label-foreground = ${colors.tertiary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.tertiary}
 
 [module/wlan]
 type = internal/network
@@ -191,32 +196,31 @@ type = internal/battery
 battery = BAT0
 adapter = AC
 
-format-charging = <ramp-capacity> <label-charging>
+format-charging = <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-low = <ramp-capacity> <label-low>
-
 label-full = "%{A1:xfce4-power-manager-settings &:}%{A}" 
 label-full-foreground = ${colors.fourth}
 
-label-charging = "%{A1:xfce4-power-manager-settings &:}%percentage%%%{A}"
+label-charging = "%{A1:xfce4-power-manager-settings &:}ﮣ %percentage%%%{A}"
 label-charging-foreground = ${colors.fourth}
 
 time-format = %H:%M
 label-discharging = "%{A1:xfce4-power-manager-settings &:}%time%%{A}"
 label-discharging-foreground = ${colors.fourth}
 
-label-low-foreground = ${colors.fifth}
+label-low = "%{A1:xfce4-power-manager-settings &:}%percentage%%%{A}"
+label-low-foreground = ${colors.alert}
 
 ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
-ramp-capacity-9 = 
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
 ramp-capacity-foreground = ${colors.fourth}
 
 [module/powermenu]
