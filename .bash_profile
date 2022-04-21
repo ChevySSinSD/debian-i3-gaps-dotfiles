@@ -24,6 +24,7 @@ if [ -f ~/scripts/bash/git-completion.bash ]; then
 
   # Add git completion to the aliases: you must manually match each of your aliases to the respective function for the git command defined in git-completion.bash.
   __git_complete g __git_main
+  __git_complete config __git_main
   __git_complete gc _git_checkout
   __git_complete gnb _git_checkout
   __git_complete gnewbranch _git_checkout

@@ -2,6 +2,9 @@
 ## Git Aliases
 # Bare repository for dotfiles
 alias config='/usr/bin/git --git-dir=/home/eric/.cfg/ --work-tree=/home/eric'
+alias configs='config status'
+alias configcam='config commit -am'
+alias configpo='config push origin'
 
 # Git
 alias g='git'
@@ -31,6 +34,7 @@ alias gpoh='git push origin HEAD'
 alias gcd='cd ~/Git/'
 
 # ls
+alias ls='ls --color=auto'
 alias la='ls -a'
 
 # apt
