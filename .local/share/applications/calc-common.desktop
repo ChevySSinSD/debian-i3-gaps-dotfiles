@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Calc
+GenericName=Calculator
+Comment=Arbitrary Precision Calculator
+TryExec=calc
+Exec=calc
+Icon=accessories-calculator
+Terminal=true
+Categories=Science;Math
