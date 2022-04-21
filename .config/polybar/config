@@ -131,7 +131,7 @@ type = internal/backlight
 card = intel_backlight
 
 format = <label>
-label = "  %percentage%%"
+label = " %percentage%%"
 label-foreground = ${colors.tertiary}
 
 [module/wlan]
@@ -195,13 +195,14 @@ format-charging = <ramp-capacity> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-low = <ramp-capacity> <label-low>
 
-label-full =  
+label-full = "%{A1:xfce4-power-manager-settings &:}%{A}" 
 label-full-foreground = ${colors.fourth}
 
+label-charging = "%{A1:xfce4-power-manager-settings &:}%percentage%%%{A}"
 label-charging-foreground = ${colors.fourth}
 
 time-format = %H:%M
-label-discharging = %time%
+label-discharging = "%{A1:xfce4-power-manager-settings &:}%time%%{A}"
 label-discharging-foreground = ${colors.fourth}
 
 label-low-foreground = ${colors.fifth}

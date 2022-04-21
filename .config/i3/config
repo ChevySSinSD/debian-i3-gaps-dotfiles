@@ -63,7 +63,7 @@ bindsym $mod+shift+e exec "rofi -modi Powermenu:~/scripts/rofi/powermenu.sh -sho
 bindsym $mod+Tab exec ~/scripts/rofi/tabmenu.sh
 
 # Startup polybar
-exec_always --no-startup-id ~/.config/polybar.old/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # change focus
 bindsym $mod+j focus left
