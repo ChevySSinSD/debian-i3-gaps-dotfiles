@@ -50,6 +50,10 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # Additional keybindings
 bindsym XF86Calculator exec --no-startup-id rofi -show calc -theme calc -no-show-match -no-sort
 
+# Set applications for floating mode
+for_window [class="Pavucontrol"] floating enable, border normal
+for_window [class="Xfce4-power-manager-settings"] floating enable, border normal
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
