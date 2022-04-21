@@ -14,7 +14,7 @@
 
 configuration {
     show-icons: false;
-    font: "Hack Nerd Font 13";
+    font: "RobotoMono Nerd Font 13";
 }
 
 @import "colors.rasi"

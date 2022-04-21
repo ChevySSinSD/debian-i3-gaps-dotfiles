@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Spotify TUI
+GenericName=Command Line Spotify Player
 Exec=spt
 Comment=Spotify for the terminal written in Rust
 Icon=spotify

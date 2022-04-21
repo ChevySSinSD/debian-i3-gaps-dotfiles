@@ -69,9 +69,6 @@ sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr 
 #	i3bar			- using polybar instead
 sudo apt remove xserver-xorg-video-intel i3bar
 
-# Install pywal (Automatically set colors based on wallpaper)
-sudo pip3 install pywal
-
 # Install picom
 git clone https://github.com/ibhagwan/picom.git ~/Git/picom
 sudo apt install libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libpcre3-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev meson libx11-xcb-dev libxcb-sync-dev cmake libxcb-composite0-dev libxcb-present-dev xcb libxcb-glx0-dev uthash-dev libconfig-dev libgl-dev libdbus-1-dev
@@ -80,11 +77,12 @@ git submodule update --init --recursive
 meson --buildtype=release . build
 sudo ninja -C build install
 
-# Install Networkmanager-dmenu
+# Install Networkmanager-dmenu and remove previous manual config
 [ ! -f ~/.local/bin/networkmanager_dmenu ] && wget -P ~/Downloads https://github.com/firecat53/networkmanager-dmenu/archive/refs/tags/v2.1.0.tar.gz \
 	&& tar -xvf ~/Downloads/v2.1.0.tar.gz --strip-components=1 --directory ~/Downloads/ \
 	&& cp ~/Downloads/networkmanager_dmenu ~/.local/bin/ \
 	&& cp ~/Downloads/networkmanager_dmenu.desktop ~/.local/share/applications/
+[ -f /etc/interfaces.d/wifi ] && rm /etc/interfaces.d/wifi
 
 # Install acpilight (xbacklight replacement that works with modesetting driver)
 git clone https://gitlab.com/wavexx/acpilight.git ~/Git/acpilight
@@ -108,14 +106,10 @@ sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --
 [ ! -f ~/.local/bin/spt ] && wget -P ~/Downloads https://github.com/Rigellute/spotify-tui/releases/latest/download/spotify-tui-linux.tar.gz \
 	&& tar -xf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
 
-# Install Powerline Font Patches
-git clone https://github.com/powerline/fonts.git ~/Git/powerline
-sh ~/Git/powerline/install.sh
-
-# Install Hack Font with Nerd Patch (for Polybar)
-wget -P ~/Downloads https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip
-unzip -qj ~/Downloads/Hack.zip -d ~/.local/share/fonts/
-sudo fc-cache ~/.local/share/fonts -f
+# Install RobotoMono Hack Font (for Polybar and Powerline)
+wget -P ~/Downloads https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+unzip -qj ~/Downloads/RobotoMono.zip -d ~/.local/share/fonts/
+fc-cache -f -v
 
 # Install Play with MPV
 pip install git+https://github.com/thann/play-with-mpv --user
@@ -133,7 +127,8 @@ wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/
 # Install GTK theme
 wget -P ~/Downloads https://github.com/EliverLara/Sweet/releases/latest/download/Sweet-Dark.zip
 sudo unzip ~/Downloads/Sweet-Dark.zip -d /usr/share/themes/
-# Install my dotfiles
+
+# Install my dotfiles from github
 
 # Clean Up
 rm -R ~/Git/*
