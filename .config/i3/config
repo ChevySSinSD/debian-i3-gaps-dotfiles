@@ -7,7 +7,10 @@ set $mod Mod4
 # is used in the bar {} block below
 font pango:RobotoMono Nerd Font 13
 
-# Launch compository
+# Launch notification daemon (dunst)
+exec_always --no-startup-id pkill dunst; dunst
+
+# Launch compositor
 exec_always --no-startup-id pkill picom; picom --no-use-damage
 
 # Keyboard shortcut to change monitor configuration
