@@ -248,8 +248,7 @@ interval = 1
 ; prefix symbol is shown before the text
 format-prefix = " "
 format = <label>
-format-foreground = #0a7383
-;format-foreground = ${colors.primary}
+format-foreground = ${colors.fourth}
 exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
 click-left = playerctl play-pause -p spotifyd
 
