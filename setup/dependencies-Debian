@@ -68,8 +68,8 @@ sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr 
 
 # Apt packages - Remove
 #	Xorg intel drivers 	- using default modesetting drivers instead
-#	i3bar			- using polybar instead
-sudo apt remove xserver-xorg-video-intel i3bar
+#	i3status		- using polybar instead
+sudo apt remove xserver-xorg-video-intel i3status
 
 # Install picom
 git clone https://github.com/ibhagwan/picom.git ~/Git/picom
