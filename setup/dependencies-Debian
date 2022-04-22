@@ -133,6 +133,11 @@ wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/
 wget -P ~/Downloads https://github.com/EliverLara/Sweet/releases/latest/download/Sweet-Dark.zip
 sudo unzip ~/Downloads/Sweet-Dark.zip -d /usr/share/themes/
 
+# Install zscroll for spotify polybar module
+git clone https://github.com/noctuid/zscroll ~/Git/zscroll
+cd ~/Git/zscroll
+sudo python3 setup.py install
+
 # Install my dotfiles from github
 
 # Clean Up
