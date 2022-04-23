@@ -62,7 +62,7 @@ git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb
 
 sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr dex \
 	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane gscan2pdf \
-	rclone libreoffice libreoffice-gtk3 neofetch htop ranger lxappearance mpv \
+	rclone libreoffice libreoffice-gtk3 neofetch htop ranger thunar lxappearance mpv \
 	python3-pip rofi polybar calc playerctl papirus-icon-theme
 
 # Apt packages - Remove
