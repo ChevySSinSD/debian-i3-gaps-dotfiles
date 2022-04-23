@@ -58,10 +58,12 @@ git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb
 #	polybar					Bar (i3bar replacement)
 #	calc					Requried for random color support
 #	playerctl				command-line utility and library for controlling media players that implement the MPRIS D-Bus Interface Specification
+#	papirus-icon-theme			Papirus Icon Theme
 
 sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr dex \
 	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane gscan2pdf \
-	rclone libreoffice libreoffice-gtk3 neofetch htop ranger lxappearance mpv python3-pip rofi polybar calc playerctl
+	rclone libreoffice libreoffice-gtk3 neofetch htop ranger lxappearance mpv \
+	python3-pip rofi polybar calc playerctl papirus-icon-theme
 
 # Apt packages - Remove
 #	Xorg intel drivers 	- using default modesetting drivers instead
@@ -88,7 +90,7 @@ sudo make -C ~/Git/acpilight/ install
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
 # Install Google Chrome
-wget -N -⎈P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget -N -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
 
 # Install LibreOffice numbertext extension
@@ -133,10 +135,15 @@ git clone https://github.com/noctuid/zscroll ~/Git/zscroll
 (cd ~/Git/zscroll ; sudo python3 setup.py install)
 
 # Install my dotfiles from github
-
-# Clean Up
-sudo rm -R ~/Git/*
-sudo rm ~/Downloads/*
+echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
+echo ".cfg" >> .gitignore
+git clone --bare https://github.com/ChevySSinSD/debian-i3-gaps-dotfiles.git $HOME/.cfg
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+mkdir -p .config-backup && \
+config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+xargs -I{} mv {} .config-backup/{}
+config checkout
+config config --local status.showUntrackedFiles no
 
 # Reboot the system
 sudo reboot
