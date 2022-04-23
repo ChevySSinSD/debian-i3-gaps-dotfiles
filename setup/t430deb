@@ -80,7 +80,7 @@ wget -N -P ~/Downloads https://github.com/firecat53/networkmanager-dmenu/archive
 tar -xvf ~/Downloads/v2.1.0.tar.gz --strip-components=1 --directory ~/Downloads/
 cp ~/Downloads/networkmanager_dmenu ~/.local/bin/
 cp ~/Downloads/networkmanager_dmenu.desktop ~/.local/share/applications/
-sudo rm /etc/interfaces.d/wifi
+sudo rm /etc/network/interfaces.d/wifi
 
 # Install acpilight (xbacklight replacement that works with modesetting driver)
 git clone https://gitlab.com/wavexx/acpilight.git ~/Git/acpilight
