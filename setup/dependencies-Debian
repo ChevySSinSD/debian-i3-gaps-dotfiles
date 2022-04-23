@@ -10,18 +10,17 @@
 [ ! -d ~/scripts/bash ] && mkdir  ~/scripts/bash
 
 # Add multimedia repositories
-wget -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
+wget -N -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
 sudo apt install ~/Downloads/deb-multimedia-keyring_2016.8.1_all.deb
-sudo wget -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
+sudo wget -N -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
 sudo apt update && sudo apt upgrade && sudo apt autoremove
 
 # Download and install Bluetooth Firmware
-wget -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/releases/latest/download/broadcom-bt-firmware-10.1.0.1115.deb \
+wget -N -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/releases/latest/download/broadcom-bt-firmware-10.1.0.1115.deb
 sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 
 # Disable Bluetooth SAP plugin (eliminate bluetooth errors on boot)
-[ ! -f /etc/systemd/system/bluetooth.service.d/override.conf ] && \
-	sudo wget -P /etc/systemd/system/bluetooth.service.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/systemd/system/bluetooth.service.d/override.conf
+sudo wget -N -P /etc/systemd/system/bluetooth.service.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/systemd/system/bluetooth.service.d/override.conf
 
 # Install Git
 sudo apt install git
@@ -29,7 +28,8 @@ git config --global user.name "Eric Roeder"
 git config --global user.email eric.roeder@gmail.com
 
 # Install i3 Gaps (if not already installed)
-dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb || sh ~/Git/i3-gaps-deb/i3-gaps-deb
+git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb
+(cd ~/Git/i3-gaps-deb ; ./i3-gaps-deb)
 
 # Apt packages - Install
 #	xorg					X display server
@@ -44,7 +44,7 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 #	pulseaudio pavucontrol	 		Audio and volume control
 #	xfce4-power-manager 			Power Manager
 #	cups					Printer support
-#	libsane brscan4 gscan2pdf		Scanner support: SANE, Brother Scanner Drivers, and scanner software
+#	libsane gscan2pdf			Scanner support: SANE, and scanner software
 #	rclone					Google Drive support
 #	libreoffice libreoffice-gtk3		Libreoffice with GTK3 theme support
 #	neofetch				System info tool
@@ -60,7 +60,7 @@ dpkg-query -l | grep -q gerardo || git clone https://github.com/maestrogerardo/i
 #	playerctl				command-line utility and library for controlling media players that implement the MPRIS D-Bus Interface Specification
 
 sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr dex \
-	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane brscan4 gscan2pdf \
+	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane gscan2pdf \
 	rclone libreoffice libreoffice-gtk3 neofetch htop ranger lxappearance mpv python3-pip rofi polybar calc playerctl
 
 # Apt packages - Remove
@@ -71,17 +71,14 @@ sudo apt remove xserver-xorg-video-intel i3status
 # Install picom
 git clone https://github.com/ibhagwan/picom.git ~/Git/picom
 sudo apt install libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libxcb-glx0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libpcre3-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev meson libx11-xcb-dev libxcb-sync-dev cmake libxcb-composite0-dev libxcb-present-dev xcb libxcb-glx0-dev uthash-dev libconfig-dev libgl-dev libdbus-1-dev
-cd ~/Git/picom
-git submodule update --init --recursive
-meson --buildtype=release . build
-sudo ninja -C build install
+(cd ~/Git/picom ; git submodule update --init --recursive ; meson --buildtype=release . build ; sudo ninja -C build install)
 
 # Install Networkmanager-dmenu and remove previous manual config
-[ ! -f ~/.local/bin/networkmanager_dmenu ] && wget -P ~/Downloads https://github.com/firecat53/networkmanager-dmenu/archive/refs/tags/v2.1.0.tar.gz \
-	&& tar -xvf ~/Downloads/v2.1.0.tar.gz --strip-components=1 --directory ~/Downloads/ \
-	&& cp ~/Downloads/networkmanager_dmenu ~/.local/bin/ \
-	&& cp ~/Downloads/networkmanager_dmenu.desktop ~/.local/share/applications/
-[ -f /etc/interfaces.d/wifi ] && rm /etc/interfaces.d/wifi
+wget -N -P ~/Downloads https://github.com/firecat53/networkmanager-dmenu/archive/refs/tags/v2.1.0.tar.gz
+tar -xvf ~/Downloads/v2.1.0.tar.gz --strip-components=1 --directory ~/Downloads/
+cp ~/Downloads/networkmanager_dmenu ~/.local/bin/
+cp ~/Downloads/networkmanager_dmenu.desktop ~/.local/share/applications/
+sudo rm /etc/interfaces.d/wifi
 
 # Install acpilight (xbacklight replacement that works with modesetting driver)
 git clone https://gitlab.com/wavexx/acpilight.git ~/Git/acpilight
@@ -91,25 +88,26 @@ sudo make -C ~/Git/acpilight/ install
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
 # Install Google Chrome
-dpkg-query -l | grep -q google-chrome-stable || wget -P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb || sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
+wget -N -⎈P ~/Downloads https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install ~/Downloads/google-chrome-stable_current_amd64.deb
 
 # Install LibreOffice numbertext extension
-[ ! -f ~/Downloads/numbertext-1-0-5.oxt ] && wget -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
+wget -N -P ~/Downloads https://extensions.libreoffice.org/assets/downloads/z/numbertext-1-0-5.oxt
 sudo /usr/lib/libreoffice/program/unopkg add ~/Downloads/numbertext-1-0-5.oxt --shared -s -f
 
 # Install LibreOffice icon theme
 wget -qO- https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-libreoffice-theme/master/install-papirus-root.sh | sh
 
 # Install Spotifyd
-[ ! -f ~/.local/bin/spotifyd ] && wget -P ~/Downloads https://github.com/Spotifyd/spotifyd/releases/latest/download/spotifyd-linux-full.tar.gz \
-	&& tar -xf ~/Downloads/spotifyd-linux-full.tar.gz --directory ~/.local/bin
+wget -N -P ~/Downloads https://github.com/Spotifyd/spotifyd/releases/latest/download/spotifyd-linux-full.tar.gz
+tar -xf ~/Downloads/spotifyd-linux-full.tar.gz --directory ~/.local/bin
 
 # Install Spotify TUI
-[ ! -f ~/.local/bin/spt ] && wget -P ~/Downloads https://github.com/Rigellute/spotify-tui/releases/latest/download/spotify-tui-linux.tar.gz \
-	&& tar -xf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
+wget -N -P ~/Downloads https://github.com/Rigellute/spotify-tui/releases/latest/download/spotify-tui-linux.tar.gz
+tar -xf ~/Downloads/spotify-tui-linux.tar.gz --directory ~/.local/bin
 
 # Install RobotoMono Hack Font (for Polybar, Rofi, and XResources)
-wget -P ~/Downloads https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
+wget -N -P ~/Downloads https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/RobotoMono.zip
 unzip -qj ~/Downloads/RobotoMono.zip -d ~/.local/share/fonts/
 fc-cache -f -v
 
@@ -122,24 +120,23 @@ sudo chmod a+rx /usr/local/bin/yt-dlp
 pip uninstall youtube-dl
 
 # Install powerline scripts
-wget -P ~/scripts/bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+wget -N -P ~/scripts/bash https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/scripts/bash/bash-git-prompt --depth=1
-wget -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/lucascosti/bashrc/fb3ce2b0c2193d27c20a6c4cb64bb443506c5849/bashscripts/bash-git-prompt/themes/Lucas_bullettrain_tags.bgptheme
+wget -N -P ~/scripts/bash/bash-git-prompt/themes https://raw.githubusercontent.com/lucascosti/bashrc/fb3ce2b0c2193d27c20a6c4cb64bb443506c5849/bashscripts/bash-git-prompt/themes/Lucas_bullettrain_tags.bgptheme
 
 # Install GTK theme
-wget -P ~/Downloads https://github.com/EliverLara/Sweet/releases/latest/download/Sweet-Dark.zip
+wget -N -P ~/Downloads https://github.com/EliverLara/Sweet/releases/latest/download/Sweet-Dark.zip
 sudo unzip ~/Downloads/Sweet-Dark.zip -d /usr/share/themes/
 
 # Install zscroll for spotify polybar module
 git clone https://github.com/noctuid/zscroll ~/Git/zscroll
-cd ~/Git/zscroll
-sudo python3 setup.py install
+(cd ~/Git/zscroll ; sudo python3 setup.py install)
 
 # Install my dotfiles from github
 
 # Clean Up
-rm -R ~/Git/*
-rm ~/Downloads/*
+sudo rm -R ~/Git/*
+sudo rm ~/Downloads/*
 
 # Reboot the system
 sudo reboot
