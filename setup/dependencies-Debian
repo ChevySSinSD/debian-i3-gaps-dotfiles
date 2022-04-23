@@ -10,17 +10,14 @@
 [ ! -d ~/scripts/bash ] && mkdir  ~/scripts/bash
 
 # Add multimedia repositories
-dpkg-query -l | grep -q deb-multimedia-keyring || \
-	wget -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
-	|| sudo apt install ~/Downloads/deb-multimedia-keyring_2016.8.1_all.deb
-[ ! -f /etc/apt/sources.list.d/multimedia.list ] && \
-	sudo wget -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
+wget -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
+sudo apt install ~/Downloads/deb-multimedia-keyring_2016.8.1_all.deb
+sudo wget -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
 sudo apt update && sudo apt upgrade && sudo apt autoremove
 
 # Download and install Bluetooth Firmware
-dpkg-query -l | grep -q broadcom-bt-firmware || \
-	wget -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/releases/latest/download/broadcom-bt-firmware-10.1.0.1115.deb \
-	|| sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
+wget -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/releases/latest/download/broadcom-bt-firmware-10.1.0.1115.deb \
+sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 
 # Disable Bluetooth SAP plugin (eliminate bluetooth errors on boot)
 [ ! -f /etc/systemd/system/bluetooth.service.d/override.conf ] && \
