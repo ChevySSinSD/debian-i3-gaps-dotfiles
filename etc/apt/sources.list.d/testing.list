@@ -1,0 +1,2 @@
+# Debian Testing Source repository
+deb-src http://deb.debian.org/debian/ testing main

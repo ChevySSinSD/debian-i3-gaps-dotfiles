@@ -1,0 +1,3 @@
+# Debian multimedia repositories
+deb http://www.deb-multimedia.org bullseye main non-free
+deb http://www.deb-multimedia.org bullseye-backports main

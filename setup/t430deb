@@ -9,10 +9,44 @@
 [ ! -d ~/scripts/rofi ] && mkdir  ~/scripts/rofi
 [ ! -d ~/scripts/bash ] && mkdir  ~/scripts/bash
 
+## Git setup
+# Install Git
+sudo apt update && sudo apt install git
+git config --global user.name "ChevySSinSD"
+git config --global user.email eric.roeder@gmail.com
+
+# Install Github CLI
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
+gh auth login
+
+# Setup SSH
+ssh-keygen -t ed25519 -C "eric.roeder@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+gh ss-key add ~/.ssh/id_ed25519.pub
+
+# Install my dotfiles from github
+echo ".cfg" >> .gitignore
+git clone --bare https://github.com/ChevySSinSD/debian-i3-gaps-dotfiles.git $HOME/.cfg
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+mkdir -p .config-backup && \
+	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+	xargs -I{} mv {} .config-backup/{}
+config checkout
+config config --local status.showUntrackedFiles no
+
+# Copy etc files from repository to correct location
+#	/etc/sudoers.d/eric (enable power down without sudo password)
+#	/etc/systemd/syster/bluetooth.service.d/override.conf (disable bluetooth SAP)
+sudo cp -a --no-preserve=all -v ~/etc /
+
 # Add multimedia repositories
 wget -N -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
 sudo apt install ~/Downloads/deb-multimedia-keyring_2016.8.1_all.deb
-sudo wget -N -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
+#sudo wget -N -P /etc/apt/sources.list.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/apt/sources.list.d/multimedia.list
 sudo apt update && sudo apt upgrade && sudo apt autoremove
 
 # Download and install Bluetooth Firmware
@@ -20,12 +54,7 @@ wget -N -P ~/Downloads https://github.com/winterheart/broadcom-bt-firmware/relea
 sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 
 # Disable Bluetooth SAP plugin (eliminate bluetooth errors on boot)
-sudo wget -N -P /etc/systemd/system/bluetooth.service.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/systemd/system/bluetooth.service.d/override.conf
-
-# Install Git
-sudo apt install git
-git config --global user.name "Eric Roeder"
-git config --global user.email eric.roeder@gmail.com
+#sudo wget -N -P /etc/systemd/system/bluetooth.service.d https://raw.githubusercontent.com/ChevySSinSD/debian-i3-gaps-dotfiles/t430-debian-i3-gaps/etc/systemd/system/bluetooth.service.d/override.conf
 
 # Install i3 Gaps (if not already installed)
 git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb
@@ -87,6 +116,8 @@ git clone https://gitlab.com/wavexx/acpilight.git ~/Git/acpilight
 sudo make -C ~/Git/acpilight/ install
 
 # Set up scanner
+# Install brother scanner driver
+
 sudo brsaneconfig4 -a name=Scanner model=HLL2380DW ip=192.168.88.238 #Setup network scanner
 
 # Install Google Chrome
@@ -133,17 +164,6 @@ sudo unzip ~/Downloads/Sweet-Dark.zip -d /usr/share/themes/
 # Install zscroll for spotify polybar module
 git clone https://github.com/noctuid/zscroll ~/Git/zscroll
 (cd ~/Git/zscroll ; sudo python3 setup.py install)
-
-# Install my dotfiles from github
-echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
-echo ".cfg" >> .gitignore
-git clone --bare https://github.com/ChevySSinSD/debian-i3-gaps-dotfiles.git $HOME/.cfg
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-mkdir -p .config-backup && \
-config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .config-backup/{}
-config checkout
-config config --local status.showUntrackedFiles no
 
 # Reboot the system
 sudo reboot
