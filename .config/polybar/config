@@ -199,7 +199,7 @@ adapter = AC
 format-charging = <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-low = <ramp-capacity> <label-low>
-label-full = "%{A1:xfce4-power-manager-settings &:}ﮣ %{A}" 
+label-full = "%{A1:xfce4-power-manager-settings &:}ﮣ%{A}" 
 label-full-foreground = ${colors.fourth}
 
 label-charging = "%{A1:xfce4-power-manager-settings &:}ﮣ %percentage%%%{A}"
