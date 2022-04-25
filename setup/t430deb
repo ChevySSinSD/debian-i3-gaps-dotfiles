@@ -92,9 +92,8 @@ git clone https://github.com/maestrogerardo/i3-gaps-deb.git ~/Git/i3-gaps-deb
 (cd ~/Git/i3-gaps-deb ; ./i3-gaps-deb)
 
 # Apt packages - Remove
-#	Xorg intel drivers 	- using default modesetting drivers instead
 #	i3status		- using polybar instead
-sudo apt remove xserver-xorg-video-intel i3status
+sudo apt remove i3status
 
 # Install picom
 git clone https://github.com/ibhagwan/picom.git ~/Git/picom
