@@ -51,6 +51,7 @@ sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 # Apt packages - Install
 #	xorg					X display server
 #	xss-lock numlockx i3lock-fancy		X tools for locking screen and activating numlock
+#	rxvt-unicode				Urxvt terminal emulator
 #	network-manager				NetworkManager for WiFi and ethernet
 #	gir1.2-nm-1.0				Required for NetworkManager_dmenu
 #	autorandr				Tool for automatic monitor switching
@@ -58,8 +59,8 @@ sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 #	feh					Image viewer used for desktop background
 #	gimp					Raster image software
 #	inkscape				Vector image software
-#	pulseaudio pavucontrol	 		Audio and volume control
-#	xfce4-power-manager 			Power Manager
+#	pulseaudio pavucontrol			Audio and volume control
+#	xfce4-power-manager			Power Manager
 #	cups					Printer support
 #	libsane gscan2pdf			Scanner support: SANE, and scanner software
 #	rclone					Google Drive support
@@ -68,7 +69,7 @@ sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 #	htop					System process monitor tool
 #	ranger					Command line file manager
 #	thunar					GUI file manager
-# 	lxappearance				GTK theme manager
+#	lxappearance				GTK theme manager
 #	mpv					Media player
 #	python3-pip				Python package manager
 #	rofi					Program Launcher (dmenu replacement)
@@ -78,7 +79,7 @@ sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 #	papirus-icon-theme			Papirus Icon Theme
 
 sudo apt update && sudo apt upgrade && sudo apt autoremove
-sudo apt install xorg xss-lock numlockx network-manager gir1.2-nm-1.0 autorandr dex \
+sudo apt install xorg xss-lock numlockx i3lock-fancy rxvt-unicode network-manager gir1.2-nm-1.0 autorandr dex \
 	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane gscan2pdf \
 	rclone libreoffice libreoffice-gtk3 neofetch htop ranger thunar lxappearance mpv \
 	python3-pip rofi polybar calc playerctl papirus-icon-theme
