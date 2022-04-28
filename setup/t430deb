@@ -29,10 +29,9 @@ gh auth login
 # Install my dotfiles from github
 echo ".cfg" >> $HOME/.gitignore
 git clone --bare git@github.com:ChevySSinSD/debian-i3-gaps-dotfiles.git $HOME/.cfg
-CONFIG='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-$CONFIG config --local status.showUntrackedFiles no
-$CONFIG fetch
-$CONFIG reset --hard
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME fetch
+git --git-dir=$HOME/.cfg/ --work-tree=$HOME reset --hard
 
 # Add Multimedia Repository keyrings
 wget -N -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
