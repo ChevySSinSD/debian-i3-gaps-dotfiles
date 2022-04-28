@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Setup Folders
 [ ! -d ~/Documents ] && mkdir ~/Documents
 [ ! -d ~/Downloads ] && mkdir ~/Downloads
