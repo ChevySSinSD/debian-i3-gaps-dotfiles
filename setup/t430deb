@@ -30,12 +30,9 @@ gh auth login
 echo ".cfg" >> $HOME/.gitignore
 git clone --bare git@github.com:ChevySSinSD/debian-i3-gaps-dotfiles.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-mkdir -p $HOME/.config-backup && \
-	config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-	xargs -I{} mv {} $HOME/.config-backup/{}
-config checkout
 config config --local status.showUntrackedFiles no
-config fetch origin
+config fetch
+config reset --hard
 
 # Add Multimedia Repository keyrings
 wget -N -P ~/Downloads https://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb
