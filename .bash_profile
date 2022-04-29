@@ -38,8 +38,3 @@ if [ -f ~/scripts/bash/git-completion.bash ]; then
   __git_complete gcomma _git_commit
   __git_complete gcmr _git_ls_remote
 fi
-
-#Start X
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx
-fi
