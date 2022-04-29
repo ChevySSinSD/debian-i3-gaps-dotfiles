@@ -50,7 +50,7 @@ sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 
 # Apt packages - Install
 #	xorg					X display server
-#	xss-lock numlockx i3lock-fancy		X tools for locking screen and activating numlock
+#	xss-lock numlockx			X tools for locking screen and activating numlock
 #	rxvt-unicode				Urxvt terminal emulator
 #	network-manager				NetworkManager for WiFi and ethernet
 #	gir1.2-nm-1.0				Required for NetworkManager_dmenu
@@ -79,7 +79,7 @@ sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 #	papirus-icon-theme			Papirus Icon Theme
 
 sudo apt update && sudo apt upgrade && sudo apt autoremove
-sudo apt install xorg xss-lock numlockx i3lock-fancy rxvt-unicode network-manager gir1.2-nm-1.0 autorandr dex \
+sudo apt install xorg xss-lock numlockx rxvt-unicode network-manager gir1.2-nm-1.0 autorandr dex \
 	feh gimp inkscape pulseaudio pavucontrol xfce4-power-manager cups libsane gscan2pdf \
 	rclone libreoffice libreoffice-gtk3 neofetch htop ranger thunar lxappearance mpv \
 	python3-pip rofi polybar calc playerctl papirus-icon-theme
