@@ -50,6 +50,7 @@ sudo apt install ~/Downloads/broadcom-bt-firmware-10.1.0.1115.deb
 
 # Apt packages - Install
 #	xorg					X display server
+#	lightdm					lightdm Display Manager
 #	xss-lock numlockx			X tools for locking screen and activating numlock
 #	rxvt-unicode				Urxvt terminal emulator
 #	network-manager				NetworkManager for WiFi and ethernet
